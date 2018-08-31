@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package>
   <name>terrain_server</name>
-  <version>0.0.5</version>
+  <version>0.0.6</version>
   <description> Terrain mapping algorithm for motion planning and control in legged locomotion</description>
 
   <author email="carlos.mastalli@laas.fr">Carlos Mastalli</author>
