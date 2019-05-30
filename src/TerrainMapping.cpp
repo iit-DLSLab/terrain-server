@@ -30,7 +30,7 @@ void TerrainMapping::addFeature(dwl::environment::Feature* feature)
 {
 	double weight;
 	feature->getWeight(weight);
-	printf(GREEN "Adding the %s feature with a weight of %f\n" COLOR_RESET,
+	printf(GREEN_ "Adding the %s feature with a weight of %f\n" COLOR_RESET,
 			feature->getName().c_str(), weight);
 	features_.push_back(feature);
 	is_added_feature_ = true;
@@ -42,14 +42,14 @@ void TerrainMapping::removeFeature(std::string feature_name)
 	int num_feature = features_.size();
 	for (int i = 0; i < num_feature; i++) {
 		if (feature_name == features_[i]->getName().c_str()) {
-			printf(GREEN "Removing the %s feature\n" COLOR_RESET,
+			printf(GREEN_ "Removing the %s feature\n" COLOR_RESET,
 					features_[i]->getName().c_str());
 			features_.erase(features_.begin() + i);
 
 			return;
 		}
 		else if (i == num_feature - 1) {
-			printf(YELLOW "Could not remove the %s feature\n" COLOR_RESET,
+			printf(YELLOW_ "Could not remove the %s feature\n" COLOR_RESET,
 					feature_name.c_str());
 		}
 	}
@@ -60,7 +60,7 @@ void TerrainMapping::compute(octomap::OcTree* octomap,
 							 const Eigen::Vector4d& robot_state)
 {
 	if (!is_added_search_area_) {
-		printf(YELLOW "Warning: adding a default search area \n" COLOR_RESET);
+		printf(YELLOW_ "Warning: adding a default search area \n" COLOR_RESET);
 		// Adding a default search area
 		addSearchArea(1.5, 4.0, -1.25, 1.25, -0.8, -0.2, 0.04);
 
@@ -103,7 +103,7 @@ void TerrainMapping::compute(octomap::OcTree* octomap,
 				double z = search_areas_[n].max_z + robot_state(2);
 				octomap::OcTreeKey init_key;
 				if (!octomap->coordToKeyChecked(xr, yr, z, depth_, init_key)) {
-					printf(RED "Cell out of bounds\n" COLOR_RESET);
+					printf(RED_ "Cell out of bounds\n" COLOR_RESET);
 
 					return;
 				}
@@ -297,7 +297,7 @@ void TerrainMapping::computeTerrainData(octomap::OcTree* octomap,
 					   terrain_info_);
 		addCellToTerrainMap(cell);
 	} else {
-		printf(YELLOW "Could not computed the cost of the features because it"
+		printf(YELLOW_ "Could not computed the cost of the features because it"
 				" is necessary to add at least one\n" COLOR_RESET);
 	}
 }
